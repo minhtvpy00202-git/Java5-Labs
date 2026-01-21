@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www/thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hình chữ nhật</title>
+</head>
+<body>
+
+<h1>Tính diện tích và chu vi hình chữ nhật</h1>
+
+<form action="/hinhchunhat/ketqua" method="post">
+    <input type="number" step="any" name="chieuDai"
+           placeholder="Chiều dài hình chữ nhật"><br><br>
+
+    <input type="number" step="any" name="chieuRong"
+           placeholder="Chiều rộng hình chữ nhật"><br><br>
+
+    <button type="submit">Kết quả</button>
+</form>
+
+<hr>
+
+<p>Chu vi = <span th:text="${chuVi}">0</span></p>
+<p>Diện tích = <span th:text="${dienTich}">0</span></p>
+
+</body>
+</html>

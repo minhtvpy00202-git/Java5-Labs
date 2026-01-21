@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<form action="/product/save" method="post">
+    <input name="name" placeholder="Product name">
+    <input name="price" placeholder="Price">
+<button>Save</button>
+
+    <ul>
+        <li>Name = <b th:text="${product.name}"></b></li>
+        <li>Price = $<b th:text="${product.price}"></b></li>
+    </ul>
+</body>
+
+</html>

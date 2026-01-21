@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List Controls</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<h3>Fill to SelectBox</h3>
+<select name="cbo" class="form-control">
+    <th:block th:each="staff: ${list}">
+        <option th:value="${staff.id}" th:text="${staff.fullname}"></option>
+    </th:block>
+</select>
+
+<h3>Create Radio Button Group</h3>
+<div class="radio-group">
+    <th:block th:each="staff: ${list}">
+        <label class="radio-item">
+            <input type="radio" name="rdo" th:value="${staff.id}">
+            <span th:text="${staff.fullname}"></span>
+        </label>
+    </th:block>
+</div>
+
+<div style="margin-top: 20px;">
+    <a href="/" style="text-decoration: none; color: #3498db;">&larr; Back to Home</a>
+</div>
+</body>
+</html>

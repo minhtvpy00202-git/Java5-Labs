@@ -1,0 +1,24 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      th:fragment="view(title, content)">
+<head>
+    <title th:replace="${title}">TITLE</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+
+<body>
+<header>
+    <h1 th:text="#{header.name}">Online Shopping</h1>
+</header>
+
+<nav th:replace="~{/WebLayout/menu}">MENU</nav>
+
+<article th:replace="${content}">CONTENT</article>
+
+<footer>
+    <hr>
+    <th:block th:utext="#{footer.copy}">
+        &copy; 2024 by FPT Polytechnic. All rights reserved.
+    </th:block>
+</footer>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 5</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+
+<h2>Trang A</h2>
+
+<hr>
+
+<h3 th:text="${message}"></h3>
+<h3 th:text="${param.message}"></h3>
+
+<hr>
+
+<h4>Thao tác:</h4>
+
+<a href="/b">🔹 Đi từ B (forward)</a><br><br>
+<a href="/c">🔹 Đi từ C (redirect)</a><br><br>
+<a href="/d">🔹 Đi từ D (response body)</a>
+
+</body>
+</html>
