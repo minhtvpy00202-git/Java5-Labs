@@ -16,7 +16,7 @@ public class Staff {
     private String fullname;
     
     @Builder.Default
-    private String photo = "photo.jpg";
+    private String photo = "p092.jpg";
     
     @Builder.Default
     private Boolean gender = true;

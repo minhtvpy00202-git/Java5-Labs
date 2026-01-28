@@ -2,26 +2,157 @@
 <html xmlns:th="http://www/thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Hình chữ nhật</title>
+    <title>Hình hộp chữ nhật</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fb, #eef2ff);
+            padding: 40px 16px;
+            color: #1f2937;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(31, 41, 55, 0.12);
+            padding: 28px;
+            border: 1px solid #e5e7eb;
+        }
+
+        h1 {
+            font-size: 26px;
+            margin-bottom: 18px;
+            color: #111827;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: grid;
+            gap: 14px;
+        }
+
+        .field {
+            display: grid;
+            gap: 8px;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 14px;
+            color: #374151;
+        }
+
+        input[type="number"] {
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid #d1d5db;
+            font-size: 15px;
+            background: #f9fafb;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        input[type="number"]:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+            background: #fff;
+        }
+
+        button {
+            margin-top: 4px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: none;
+            background: #4f46e5;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.1s ease, background 0.2s ease;
+        }
+
+        button:hover {
+            background: #4338ca;
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e5e7eb;
+            margin: 22px 0;
+        }
+
+        .result {
+            display: grid;
+            gap: 8px;
+            background: #f8fafc;
+            border: 1px dashed #d1d5db;
+            border-radius: 10px;
+            padding: 16px;
+        }
+
+        .result p {
+            font-size: 16px;
+            color: #374151;
+        }
+
+        .result span {
+            font-weight: 700;
+            color: #111827;
+        }
+    </style>
 </head>
 <body>
 
-<h1>Tính diện tích và chu vi hình chữ nhật</h1>
+<div class="container">
+    <h1>Tính diện tích và chu vi hình chữ nhật</h1>
+    <p class="subtitle">Nhập chiều dài và chiều rộng, chiều cao để xem kết quả.</p>
 
-<form action="/hinhchunhat/ketqua" method="post">
-    <input type="number" step="any" name="chieuDai"
-           placeholder="Chiều dài hình chữ nhật"><br><br>
+    <form action="/hinhchunhat/result" method="post">
+        <div class="field">
+            <label for="chieuDai">Chiều dài</label>
+            <input id="chieuDai" type="number" step="any" name="chieuDai"
+                   placeholder="Nhập chiều dài hình hộp chữ nhật">
+        </div>
 
-    <input type="number" step="any" name="chieuRong"
-           placeholder="Chiều rộng hình chữ nhật"><br><br>
+        <div class="field">
+            <label for="chieuRong">Chiều rộng</label>
+            <input id="chieuRong" type="number" step="any" name="chieuRong"
+                   placeholder="Nhập chiều rộng hình hộp chữ nhật">
+        </div>
 
-    <button type="submit">Kết quả</button>
-</form>
+        <div class="field">
+            <label for="chieuCao">Chiều cao</label>
+            <input id="chieuCao" type="number" step="any" name="chieuCao"
+                   placeholder="Nhập chiều cao hình hộp chữ nhật">
+        </div>
 
-<hr>
+        <button type="submit">Kết quả</button>
+    </form>
 
-<p>Chu vi = <span th:text="${chuVi}">0</span></p>
-<p>Diện tích = <span th:text="${dienTich}">0</span></p>
+    <hr>
+
+    <div class="result">
+        <p>Chu vi đáy = <span th:text="${chuVi}">0</span></p>
+        <p>Diện tích đáy = <span th:text="${dienTich}">0</span></p>
+        <p>Thể tích = <span th:text="${theTich}">0</span></p>
+    </div>
+</div>
 
 </body>
 </html>

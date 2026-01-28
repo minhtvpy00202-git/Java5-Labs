@@ -15,13 +15,13 @@ public class AuthController {
     @Autowired
     HttpServletRequest request;
 
-    // Hiển thị form
+
     @GetMapping("/form")
     public String form() {
         return "login";
     }
 
-    // Xử lý đăng nhập
+
     @PostMapping("/check")
     public String login(Model model) {
         String username = request.getParameter("username");

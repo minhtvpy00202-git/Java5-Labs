@@ -3,14 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Staff List</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<div th:each="staff, st : ${list}">
-    <img th:src="@{|/photos/${staff.photo}|}" style="height:40px" alt="Staff Photo">
-    <b th:text="@{|${st.count}. |}"></b>
-    <b th:text="${#strings.capitalizeWords(staff.fullname)}"></b>,
-    $<b th:text="${#numbers.formatDecimal(staff.salary, 0, 'COMMA', 2, 'POINT')}"></b>
-    <th:block th:if="${!st.last}"><hr></th:block>
+<div class="page">
+    <div class="container">
+        <h1 class="page-title">Staff List</h1>
+        <p class="subtle">Danh sách nhân sự và mức lương hiện tại.</p>
+
+        <div class="staff-list">
+            <div class="card staff-item" th:each="staff, st : ${list}">
+                <img class="avatar" th:src="@{|/photos/${staff.photo}|}" alt="Staff Photo">
+                <div class="staff-meta">
+                    <span class="badge" th:text="@{|#${st.count}|}"></span>
+                    <span class="staff-name" th:text="${#strings.capitalizeWords(staff.fullname)}"></span>
+                </div>
+                <div class="staff-salary">
+                    $<span th:text="${#numbers.formatDecimal(staff.salary, 0, 'COMMA', 2, 'POINT')}"></span>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <a class="back-link" href="/">&larr; Back to Home</a>
+        </div>
+    </div>
 </div>
 </body>
 </html>

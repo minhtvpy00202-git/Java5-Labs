@@ -3,36 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title>List Status</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<table border="1" style="width:100%">
-    <thead>
-    <tr>
-        <th rowspan="2">HỌ VÀ TÊN</th>
-        <th colspan="6">CÁC THUỘC TÍNH TRẠNG THÁI</th>
-    </tr>
-    <tr>
-        <th>Index</th>
-        <th>Count</th>
-        <th>First</th>
-        <th>Last</th>
-        <th>Odd</th>
-        <th>Even</th>
-    </tr>
-    </thead>
-    <tbody>
-    <th:block th:each="staff, st : ${list}">
-        <tr th:style="@{|background-color:${st.odd?'pink':'cyan'}|}">
-            <td th:text="${#strings.capitalizeWords(staff.fullname)}"></td>
-            <td th:text="${st.index}"></td>
-            <td th:text="${st.count}"></td>
-            <td th:text="${st.first}"></td>
-            <td th:text="${st.last}"></td>
-            <td th:text="${st.odd}"></td>
-            <td th:text="${st.even}"></td>
-        </tr>
-    </th:block>
-    </tbody>
-</table>
+<div class="page">
+    <div class="container">
+        <h1 class="page-title">List Status</h1>
+        <p class="subtle">Bảng trạng thái vòng lặp với Thymeleaf.</p>
+
+        <div class="table-wrap">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th rowspan="2">HỌ VÀ TÊN</th>
+                    <th colspan="6">CÁC THUỘC TÍNH TRẠNG THÁI</th>
+                </tr>
+                <tr>
+                    <th>Index</th>
+                    <th>Count</th>
+                    <th>First</th>
+                    <th>Last</th>
+                    <th>Odd</th>
+                    <th>Even</th>
+                </tr>
+                </thead>
+                <tbody>
+                <th:block th:each="staff, st : ${list}">
+                    <tr>
+                        <td th:text="${#strings.capitalizeWords(staff.fullname)}"></td>
+                        <td th:text="${st.index}"></td>
+                        <td th:text="${st.count}"></td>
+                        <td th:text="${st.first}"></td>
+                        <td th:text="${st.last}"></td>
+                        <td th:text="${st.odd}"></td>
+                        <td th:text="${st.even}"></td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <a class="back-link" href="/">&larr; Back to Home</a>
+        </div>
+    </div>
+</div>
 </body>
 </html>

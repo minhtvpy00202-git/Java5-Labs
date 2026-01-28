@@ -3,40 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <title>Staff Create</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
 <body>
-<i th:text="${message}"></i>
-<form th:object="${staff}" action="/staff/create/save"
-      method="post" enctype="multipart/form-data">
-    Email: <input th:field="*{id}">
-    <i th:errors="*{id}"></i><hr>
+<main class="page">
+    <h1 class="form-title">Staff Create</h1>
+    <p class="form-subtitle">Vui lòng điền đầy đủ thông tin nhân viên.</p>
 
-    Họ và tên: <input th:field="*{fullname}">
-    <i th:errors="*{fullname}"></i><hr>
+    <i th:text="${message}"></i>
+    <form class="card-form" th:object="${staff}" action="/staff/create/save"
+          method="post" enctype="multipart/form-data">
+        <div class="form-row">
+            <label>Email</label>
+            <input th:field="*{id}" type="email" placeholder="email@example.com">
+            <i th:errors="*{id}"></i>
+        </div>
 
-    Giới tính:
-    <input type="radio" th:field="*{gender}" value="true">Nam
-    <input type="radio" th:field="*{gender}" value="false">Nữ
-    <i th:errors="*{gender}"></i><hr>
+        <div class="form-row">
+            <label>Họ và tên</label>
+            <input th:field="*{fullname}" type="text" placeholder="Nguyễn Văn A">
+            <i th:errors="*{fullname}"></i>
+        </div>
 
-    Ngày sinh: <input th:field="*{birthday}" type="date">
-    <i th:errors="*{birthday}"></i><hr>
+        <div class="form-row">
+            <label>Giới tính</label>
+            <div class="form-inline">
+                <label><input type="radio" th:field="*{gender}" value="true">Nam</label>
+                <label><input type="radio" th:field="*{gender}" value="false">Nữ</label>
+            </div>
+            <i th:errors="*{gender}"></i>
+        </div>
 
-    Hình ảnh:
-    <input th:field="*{photo}" type="hidden">
-    <input name="photo_file" type="file"><hr>
+        <div class="form-row">
+            <label>Ngày sinh</label>
+            <input th:field="*{birthday}" type="date">
+            <i th:errors="*{birthday}"></i>
+        </div>
 
-    Cấp bậc:
-    <select th:field="*{level}">
-        <option value="0">Uý</option>
-        <option value="1">Tá</option>
-        <option value="2">Tướng</option>
-    </select><hr>
+        <div class="form-row">
+            <label>Hình ảnh</label>
+            <input th:field="*{photo}" type="hidden">
+            <input name="photo_file" type="file">
+        </div>
 
-    Salary: <input th:field="*{salary}">
-    <i th:errors="*{salary}"></i><hr>
-    <button>Create</button>
+        <div class="form-row">
+            <label>Cấp bậc</label>
+            <select th:field="*{level}">
+                <option value="0">Uý</option>
+                <option value="1">Tá</option>
+                <option value="2">Tướng</option>
+            </select>
+        </div>
 
-</form>
+        <div class="form-row">
+            <label>Salary</label>
+            <input th:field="*{salary}" type="number" step="0.01" placeholder="0.00">
+            <i th:errors="*{salary}"></i>
+        </div>
+
+        <button type="submit">Create</button>
+    </form>
+</main>
 </body>
 </html>

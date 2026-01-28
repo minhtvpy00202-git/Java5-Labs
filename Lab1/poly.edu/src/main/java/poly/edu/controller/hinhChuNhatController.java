@@ -18,25 +18,28 @@ public class hinhChuNhatController {
     HttpServletRequest request;
 
 
-    @GetMapping("/nhapvao")
+    @GetMapping("/input")
     public String nhap() {
         return "hinhchunhat";
     }
 
-    @PostMapping("/ketqua")
+    @PostMapping("/result")
     public String ketQua(Model model) {
         DecimalFormat df = new DecimalFormat("#.##");
 
         double chieuDai = Double.parseDouble(request.getParameter("chieuDai"));
         double chieuRong = Double.parseDouble(request.getParameter("chieuRong"));
+        double chieuCao = Double.parseDouble(request.getParameter("chieuCao"));
 
         double chuVi = 2 * (chieuDai + chieuRong);
         double dienTich = chieuDai * chieuRong;
+        double theTich = chieuDai * chieuRong * chieuCao;
 
 
 
         model.addAttribute("chuVi", df.format(chuVi));
         model.addAttribute("dienTich", df.format(dienTich));
+        model.addAttribute("theTich", df.format(theTich));
 
         return "hinhchunhat";
     }
