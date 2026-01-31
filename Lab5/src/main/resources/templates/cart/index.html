@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ hàng</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div class="container">
+    <h1 class="page-title">Giỏ hàng</h1>
+    <table>
+        <tr>
+            <th>Id</th><th>Name</th><th>Price</th>
+            <th>Quantity</th><th>Amount</th><th></th>
+        </tr>
+        <tr th:each="item : ${cart.items}">
+            <form th:action="@{|/cart/update/${item.id}|}" method="post">
+                <td th:text="${item.id}"></td>
+                <td th:text="${item.name}"></td>
+                <td th:text="${item.price}"></td>
+                <td>
+                    <input name="qty" type="number" min="1" th:value="${item.qty}" onblur="this.form.submit()">
+                </td>
+                <td th:text="${item.price * item.qty}"></td>
+                <td>
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                    <button class="btn btn-danger" type="submit" th:formaction="@{|/cart/remove/${item.id}|}">Remove</button>
+                </td>
+            </form>
+        </tr>
+    </table>
+    <div class="summary">
+        <span>Tổng số lượng: <strong th:text="${cart.count}"></strong></span>
+        <span>Tổng tiền: <strong th:text="${cart.amount}"></strong></span>
+    </div>
+    <form th:action="@{/cart/clear}" method="post" style="display:inline">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+        <button class="btn btn-danger" type="submit">Clear Cart</button>
+    </form>
+    <a class="btn btn-link" href="/item/index">Add more</a>
+</div>
+</body>
+</html>
