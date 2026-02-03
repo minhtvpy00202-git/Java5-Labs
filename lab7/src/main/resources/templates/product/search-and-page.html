@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search & Page</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div th:replace="~{menu :: menu}"></div>
+
+
+<h2>SEARCH & PAGE</h2>
+
+<form action="/product/search-and-page" method="post">
+    <input type="text" name="keywords"
+           placeholder="Enter keyword"
+           th:value="${session.keywords}">
+    <button type="submit">Search</button>
+</form>
+
+<br>
+
+<div th:if="${page.totalElements == 0}" class="empty">
+    Không tìm thấy sản phẩm phù hợp
+</div>
+
+<table th:if="${page.totalElements > 0}" class="data-table product-table">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Date</th>
+    </tr>
+
+    <th:block th:each="item : ${page.content}">
+        <tr>
+            <td th:text="${item.id}"></td>
+            <td th:text="${item.name}"></td>
+            <td th:text="${item.price}"></td>
+            <td th:text="${#dates.format(item.createDate, 'yyyy-MM-dd')}"></td>
+        </tr>
+    </th:block>
+</table>
+
+<br>
+
+<!-- PAGINATION -->
+<div>
+    <a th:href="@{|/product/search-and-page?p=0|}">First</a>
+    |
+    <a th:href="@{|/product/search-and-page?p=${page.number - 1}|}"
+       th:if="${page.number > 0}">Previous</a>
+    |
+    <a th:href="@{|/product/search-and-page?p=${page.number + 1}|}"
+       th:if="${page.number < page.totalPages - 1}">Next</a>
+    |
+    <a th:href="@{|/product/search-and-page?p=${page.totalPages - 1}|}">Last</a>
+</div>
+
+<br>
+
+<!-- PAGE NUMBERS -->
+<div class="page-numbers" th:if="${page.totalPages > 1}">
+    <span th:each="i : ${#numbers.sequence(0, page.totalPages - 1)}">
+        <a class="page-number"
+           th:classappend="${i} == ${page.number} ? ' active'"
+           th:href="@{|/product/search-and-page?p=${i}|}"
+           th:text="${i + 1}">1</a>
+    </span>
+    </div>
+
+<ul>
+    <li>Số phần tử hiện tại: <b th:text="${page.numberOfElements}"></b></li>
+    <li>Trang số: <b th:text="${page.number + 1}"></b></li>
+    <li>Kích thước trang: <b th:text="${page.size}"></b></li>
+    <li>Tổng số phần tử: <b th:text="${page.totalElements}"></b></li>
+    <li>Tổng số trang: <b th:text="${page.totalPages}"></b></li>
+</ul>
+
+<br>
+<a href="/product/search">⬅ Search by Price</a> |
+<a href="/report/inventory-by-category">➡ Inventory Report</a>
+
+</body>
+</html>

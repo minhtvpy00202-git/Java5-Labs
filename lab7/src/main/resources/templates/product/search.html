@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search by Price</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div th:replace="~{menu :: menu}"></div>
+
+
+<h2>SEARCH BY PRICE</h2>
+
+<form action="/product/search" method="get">
+    <input type="number" step="0.01" name="min"
+           placeholder="Min price"
+           th:value="${min}">
+
+    <input type="number" step="0.01" name="max"
+           placeholder="Max price"
+           th:value="${max}">
+
+    <button type="submit">Search</button>
+</form>
+
+<br>
+
+<div th:if="${#lists.isEmpty(items)}" class="empty">
+    Không tìm thấy sản phẩm phù hợp
+    <br><br>
+</div>
+
+<table th:if="${!#lists.isEmpty(items)}" class="data-table product-table">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>
+            Price
+            <a th:href="@{/product/search(
+        min=${min != null ? min : ''},
+        max=${max != null ? max : ''},
+        sort='price',
+        dir='asc')}">↑</a>
+
+            <a th:href="@{/product/search(
+        min=${min != null ? min : ''},
+        max=${max != null ? max : ''},
+        sort='price',
+        dir='desc')}">↓</a>
+
+        </th>
+        <th>Date</th>
+    </tr>
+
+    <th:block th:each="item : ${items}">
+        <tr>
+            <td th:text="${item.id}"></td>
+            <td th:text="${item.name}"></td>
+            <td th:text="${item.price}"></td>
+            <td th:text="${#dates.format(item.createDate, 'yyyy-MM-dd')}"></td>
+        </tr>
+    </th:block>
+</table>
+
+<br>
+<a href="/product/search-and-page">➡ Search & Page</a> |
+<a href="/report/inventory-by-category">➡ Inventory Report</a>
+
+</body>
+</html>

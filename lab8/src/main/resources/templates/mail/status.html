@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div th:replace="layout/menu"></div>
+
+<div class="container">
+    <div class="status-container">
+        <div class="status-header">
+            Mail Queue Status
+        </div>
+        <div class="status-content">
+            <p>
+                📬 Số mail đang chờ gửi:
+                <b id="queueSize">0</b>
+            </p>
+
+            <p>
+                📤 Số mail đã gửi:
+                <b id="sentCount">0</b>
+            </p>
+
+            <div id="statusBox">
+                ⏳ Đang xử lý gửi mail...
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function loadStatus() {
+        fetch('/mail/status/data')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('queueSize').innerText = data.queueSize;
+                document.getElementById('sentCount').innerText = data.sentCount;
+
+                const statusBox = document.getElementById('statusBox');
+
+                if (data.queueSize === 0) {
+                    statusBox.innerText = '✅ Hệ thống đang rảnh';
+                    statusBox.style.color = 'green';
+                } else {
+                    statusBox.innerText = '⏳ Đang xử lý gửi mail...';
+                    statusBox.style.color = 'orange';
+                }
+            });
+    }
+
+    // gọi lần đầu
+    loadStatus();
+
+    // mỗi 2 giây gọi lại
+    setInterval(loadStatus, 2000);
+</script>
+
+</body>
+</html>

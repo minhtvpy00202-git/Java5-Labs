@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab 7 - Home</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<!-- MENU -->
+<div th:replace="~{menu :: menu}"></div>
+
+<div class="container">
+    <h1>LAB 7 – JPAREPOSITORY 2</h1>
+
+    <p class="intro">
+        Bài thực hành môn <b>Lập trình Java 5</b><br>
+        Nội dung: @Query, DSL, phân trang, truy vấn tổng hợp
+    </p>
+
+    <div class="card-container">
+        <a class="card" href="/product/search">
+            🔍<br>
+            <b>Search by Price</b>
+        </a>
+
+        <a class="card" href="/product/search-and-page">
+            📄<br>
+            <b>Search & Page</b>
+        </a>
+
+        <a class="card" href="/report/inventory-by-category">
+            📊<br>
+            <b>Inventory Report</b>
+        </a>
+    </div>
+</div>
+
+</body>
+</html>

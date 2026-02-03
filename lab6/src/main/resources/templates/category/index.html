@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Category Management</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<th:block th:replace="~{layout/menu}"></th:block>
+
+<div class="container">
+<h3>CATEGORY MANAGEMENT</h3>
+
+<div class="alert success" th:if="${message}" th:text="${message}"></div>
+<div class="alert error" th:if="${error}" th:text="${error}"></div>
+
+<th:block th:replace="~{category/_form}"></th:block>
+<hr>
+<th:block th:replace="~{category/_table}"></th:block>
+
+</div>
+</body>
+</html>

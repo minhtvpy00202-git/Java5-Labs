@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<form class="container" th:object="${item}">
+    <div class="form-row">
+        <label for="id">Mã loại</label>
+        <input id="id" th:field="*{id}" placeholder="Category Id"/>
+        <small class="error" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></small>
+    </div>
+    <div class="form-row">
+        <label for="name">Tên loại</label>
+        <input id="name" th:field="*{name}" placeholder="Category Name"/>
+        <small class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
+    </div>
+    <hr>
+
+    <div class="actions">
+        <button class="btn primary" formaction="/category/create">Create</button>
+        <button class="btn" formaction="/category/update">Update</button>
+        <a class="btn danger" th:href="@{|/category/delete/${item.id}|}">Delete</a>
+        <a class="btn" href="/category/index">Reset</a>
+    </div>
+</form>
+
+</body>
+</html>

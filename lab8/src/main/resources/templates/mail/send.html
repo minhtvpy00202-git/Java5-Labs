@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div th:replace="layout/menu"></div>
+
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        <div class="input-group">
+            <input name="to" placeholder=" " required>
+            <label>To</label>
+        </div>
+        <div class="input-group">
+            <input name="cc" placeholder=" ">
+            <label>CC</label>
+        </div>
+        <div class="input-group">
+            <input name="bcc" placeholder=" ">
+            <label>BCC</label>
+        </div>
+        <div class="input-group">
+            <input name="subject" placeholder=" " required>
+            <label>Subject</label>
+        </div>
+        <textarea name="body" placeholder="Compose email"></textarea>
+        <div style="padding: 16px 24px;">
+            <input type="file" name="files" multiple>
+        </div>
+        <button type="submit">Send</button>
+    </form>
+</div>
+
+</body>
+</html>

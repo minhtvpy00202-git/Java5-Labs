@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventory by Category</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div th:replace="~{menu :: menu}"></div>
+
+<h2>TỒN KHO THEO LOẠI</h2>
+
+<div th:if="${#lists.isEmpty(items)}" class="empty">
+    Không có dữ liệu
+</div>
+
+<table th:if="${!#lists.isEmpty(items)}" class="data-table report-table">
+    <tr>
+        <th>Loại hàng</th>
+        <th>Tổng giá</th>
+        <th>Số sản phẩm</th>
+    </tr>
+
+    <th:block th:each="item : ${items}">
+        <tr>
+            <td th:text="${item.group.name}"></td>
+            <td th:text="${item.sum}"></td>
+            <td th:text="${item.count}"></td>
+        </tr>
+    </th:block>
+    <tfoot>
+    <tr>
+        <th>Tổng</th>
+        <th th:text="${totalSum}"></th>
+        <th th:text="${totalCount}"></th>
+    </tr>
+    </tfoot>
+</table>
+
+<br>
+<a href="/product/search">⬅ Search by Price</a> |
+<a href="/product/search-and-page">⬅ Search & Page</a>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav>
+    <a href="/">Home</a> |
+    <a href="/mail/send">Send Mail</a> |
+    <a href="/mail/status">Mail Status</a> |
+    <!-- CHƯA LOGIN -->
+    <span th:if="${session.user == null}">
+        <a href="/auth/login">Login</a>
+    </span>
+
+    <!-- ĐÃ LOGIN -->
+    <span th:if="${session.user != null}">
+        Xin chào,
+        <b th:text="${session.user.fullname}"></b>
+        (<span th:text="${session.user.admin ? 'Admin' : 'User'}"></span>)
+        |
+        <a href="/auth/logout">Logout</a>
+
+
+    </span>
+</nav>
+
+<hr>
+
+</body>
+</html>

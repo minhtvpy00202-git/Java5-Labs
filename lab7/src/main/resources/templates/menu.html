@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="menu">
+    <div class="menu">
+        <a href="/" th:classappend="${activeMenu} == 'home' ? ' active'">🏠 Home</a>
+        <a href="/product/search" th:classappend="${activeMenu} == 'search' ? ' active'">Search by Price</a>
+        <a href="/product/search-and-page" th:classappend="${activeMenu} == 'search-and-page' ? ' active'">Search & Page</a>
+        <a href="/report/inventory-by-category" th:classappend="${activeMenu} == 'report' ? ' active'">Inventory Report</a>
+    </div>
+</div>
+
+</body>
+</html>

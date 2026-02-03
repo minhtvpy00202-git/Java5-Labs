@@ -1,0 +1,384 @@
+/* Gmail-like Interface CSS for Spring Boot Mail Application */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', 'Arial', sans-serif;
+    background-color: #f6f8fc;
+    color: #202124;
+    line-height: 1.4;
+}
+
+/* Navigation Bar - Gmail Style */
+nav {
+    background: #ffffff;
+    border-bottom: 1px solid #dadce0;
+    padding: 8px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav a {
+    color: #5f6368;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    font-weight: 500;
+}
+
+nav a:hover {
+    background-color: #f1f3f4;
+    color: #1a73e8;
+}
+
+nav span {
+    color: #5f6368;
+    font-size: 14px;
+}
+
+nav b {
+    color: #202124;
+    font-weight: 500;
+}
+
+/* Remove default hr styling */
+hr {
+    display: none;
+}
+
+/* Main Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+/* Gmail Compose Form Styling */
+form {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(60,64,67,0.3), 0 4px 8px 3px rgba(60,64,67,0.15);
+    max-width: 680px;
+    margin: 24px auto;
+    overflow: hidden;
+}
+
+/* Form Header */
+form::before {
+    content: "Compose";
+    display: block;
+    background: #f8f9fa;
+    padding: 16px 24px;
+    border-bottom: 1px solid #dadce0;
+    font-weight: 500;
+    color: #202124;
+    font-size: 16px;
+}
+
+/* Input Fields */
+form input[type="text"],
+form input[name="to"],
+form input[name="subject"] {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #dadce0;
+    padding: 12px 24px;
+    font-size: 14px;
+    background: transparent;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+form input[type="text"]:focus,
+form input[name="to"]:focus,
+form input[name="subject"]:focus {
+    border-bottom-color: #1a73e8;
+}
+
+form input[name="to"] {
+    position: relative;
+}
+
+form input[name="to"]::before {
+    content: "To";
+    position: absolute;
+    left: 24px;
+    top: 12px;
+    color: #5f6368;
+    font-size: 14px;
+    pointer-events: none;
+}
+
+/* Placeholder styling */
+form input::placeholder {
+    color: #5f6368;
+    font-size: 14px;
+}
+
+/* Textarea */
+form textarea {
+    width: 100%;
+    min-height: 300px;
+    border: none;
+    padding: 24px;
+    font-size: 14px;
+    font-family: inherit;
+    resize: vertical;
+    outline: none;
+    background: transparent;
+}
+
+form textarea::placeholder {
+    color: #5f6368;
+}
+
+/* Send Button */
+form button {
+    background: #1a73e8;
+    color: white;
+    border: none;
+    padding: 8px 24px;
+    margin: 16px 24px 24px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    min-width: 80px;
+}
+
+form button:hover {
+    background: #1557b0;
+    box-shadow: 0 1px 2px rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+}
+
+form button:active {
+    background: #1143a3;
+}
+
+/* Gmail-like Input Labels */
+.input-group {
+    position: relative;
+    border-bottom: 1px solid #dadce0;
+    padding-top: 8px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 20px 24px 8px;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 14px;
+    transition: border-color 0.2s ease;
+}
+
+.input-group input:focus {
+    border-bottom-color: #1a73e8;
+}
+
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+    color: #1a73e8;
+}
+
+.input-group label {
+    position: absolute;
+    left: 24px;
+    top: 8px;
+    color: #5f6368;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    pointer-events: none;
+    transition: color 0.2s ease;
+}
+
+/* Home Page Styling */
+.welcome-container {
+    text-align: center;
+    padding: 48px 24px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(60,64,67,0.3);
+    max-width: 600px;
+    margin: 24px auto;
+}
+
+.welcome-container h1 {
+    color: #202124;
+    font-size: 32px;
+    font-weight: 400;
+    margin-bottom: 16px;
+}
+
+.welcome-container p {
+    color: #5f6368;
+    font-size: 16px;
+    margin-bottom: 32px;
+}
+
+/* Login Form */
+.login-form {
+    max-width: 400px;
+    margin: 48px auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(60,64,67,0.3);
+    padding: 48px 40px 36px;
+}
+
+.login-form h2 {
+    text-align: center;
+    color: #202124;
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 32px;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 16px;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.login-form input:focus {
+    border-color: #1a73e8;
+}
+
+.login-form button {
+    width: 100%;
+    background: #1a73e8;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.login-form button:hover {
+    background: #1557b0;
+}
+
+/* Mail Status Page */
+.status-container {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(60,64,67,0.3);
+    margin: 24px auto;
+    max-width: 800px;
+    overflow: hidden;
+}
+
+.status-header {
+    background: #f8f9fa;
+    padding: 16px 24px;
+    border-bottom: 1px solid #dadce0;
+    font-weight: 500;
+    color: #202124;
+}
+
+.status-content {
+    padding: 24px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        gap: 8px;
+        padding: 16px;
+    }
+    
+    .container {
+        padding: 16px;
+    }
+    
+    form {
+        margin: 16px;
+        border-radius: 0;
+    }
+    
+    .login-form {
+        margin: 16px;
+        padding: 32px 24px;
+    }
+}
+
+/* Additional Gmail-like Elements */
+.gmail-red {
+    color: #ea4335;
+}
+
+.gmail-blue {
+    color: #4285f4;
+}
+
+.gmail-green {
+    color: #34a853;
+}
+
+.gmail-yellow {
+    color: #fbbc05;
+}
+
+/* Loading Animation */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #1a73e8;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Success/Error Messages */
+.message {
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin: 16px 0;
+    font-size: 14px;
+}
+
+.message.success {
+    background: #e8f5e8;
+    color: #137333;
+    border: 1px solid #ceead6;
+}
+
+.message.error {
+    background: #fce8e6;
+    color: #d93025;
+    border: 1px solid #f9dedc;
+}
+
+.message.info {
+    background: #e8f0fe;
+    color: #1967d2;
+    border: 1px solid #d2e3fc;
+}
