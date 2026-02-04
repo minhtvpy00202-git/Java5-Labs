@@ -11,6 +11,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 
 @Configuration
 public class SecurityConfig {
@@ -34,7 +36,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http, UserDetailsService uds) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/account/login", "/item/index", "/", "/error").permitAll()
+                        .requestMatchers("/account/login", "/account/register", "/item/index", "/", "/home", "/error").permitAll()
                         .requestMatchers("/cart/**").authenticated()
                         .anyRequest().permitAll()
                 )
@@ -71,5 +73,10 @@ public class SecurityConfig {
                 )
                 .csrf(Customizer.withDefaults());
         return http.build();
+    }
+
+    @Bean
+    public MultipartResolver multipartResolver() {
+        return new StandardServletMultipartResolver();
     }
 }
